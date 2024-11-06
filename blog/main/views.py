@@ -7,6 +7,7 @@ from .serializers import *
 
 # Create your views here.
 class BlogView(APIView):
+    permission_classes = [IsAuthenticated] 
     def get(self, request):
         # Get the blog posts from the database
         blog_posts = BlogPost.objects.all() 
@@ -15,7 +16,7 @@ class BlogView(APIView):
     
 
 class BlogPostCreateView(APIView):
-    # permission_classes = [IsAuthenticated] 
+    permission_classes = [IsAuthenticated] 
 
     def post(self, request):
         serializer = BlogSerializer(data=request.data) 
@@ -26,7 +27,7 @@ class BlogPostCreateView(APIView):
     
 
 class BlogPostUpdateView(APIView):
-    # permission_classes = [AllowAny] 
+    permission_classes = [IsAuthenticated] 
     def put(self, request, pk):
         blog_post = BlogPost.objects.get(pk=pk)
         serializer = BlogSerializer(blog_post, data=request.data)
@@ -37,6 +38,7 @@ class BlogPostUpdateView(APIView):
     
     
 class BlogPostDeleteView(APIView):
+    permission_classes = [IsAuthenticated] 
     def delete(self, request, pk):
         try:
             blog_post = BlogPost.objects.get(pk=pk)
