@@ -15,9 +15,17 @@ import psycopg2
 from dotenv import load_dotenv
 import dj_database_url
 import os
+# from rest_framework_simplejwt.settings import api_settings
+
+# api_settings.SIGNING_KEY = SECRET_KEY
 
 # Load environment variables from .env
 load_dotenv()
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = os.getenv('DEBUG', 'True') == 'True'
+
+ALLOWED_HOSTS =  os.getenv('ALLOWED_HOSTS', '*').split(';')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -25,11 +33,9 @@ load_dotenv()
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-
-DATABASES = {
-    'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
-}
-
+# DATABASES = {
+#     'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
+# }
 
 # Fetch variables
 USER = os.getenv("user")
@@ -67,10 +73,6 @@ except Exception as e:
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'False') == 'True' 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',') 
 
 # Application definition
 
@@ -118,22 +120,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'blog.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.getenv('dbname'),
-#         'USER': os.getenv('user'),
-#         'PASSWORD': os.getenv('password'),
-#         'HOST': os.getenv('host'),
-#         'PORT': os.getenv('port'), 
-#     }
-# }
 
 
 # Password validation
