@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import psycopg2
 from dotenv import load_dotenv
+import dj_database_url
 import os
 
 # Load environment variables from .env
@@ -23,6 +24,12 @@ load_dotenv()
 # SECURITY WARNING: keep the secret key used in production secret!
 
 SECRET_KEY = os.getenv("SECRET_KEY")
+
+
+DATABASES = {
+    'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
+}
+
 
 # Fetch variables
 USER = os.getenv("user")
