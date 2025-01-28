@@ -33,9 +33,6 @@ ALLOWED_HOSTS =  os.getenv('ALLOWED_HOSTS', '*').split(';')
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-if not SECRET_KEY:
-    raise ValueError("SECRET_KEY is not set in the environment variables")
-
 # DATABASES = {
 #     'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
 # }
