@@ -15,9 +15,9 @@ import psycopg2
 from dotenv import load_dotenv
 import dj_database_url
 import os
-# from rest_framework_simplejwt.settings import api_settings
+from rest_framework_simplejwt.settings import api_settings
 
-# api_settings.SIGNING_KEY = SECRET_KEY
+api_settings.SIGNING_KEY = SECRET_KEY
 
 # Load environment variables from .env
 load_dotenv()
