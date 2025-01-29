@@ -16,6 +16,7 @@ schema_view = get_schema_view(
       "Django Rest Framework. It provides a RESTful API for creating, reading, updating, and deleting blog posts."
       "The API is documented using Swagger and supports multiple API endpoints for different operations."
       "The project follows standard professional guidelines for commit messages, API documentation, and code style.",
+      "NOTE: Every following  path starts with /api/.",
       terms_of_service="https://www.google.com/policies/terms/",
       contact=openapi.Contact(email="contact@snippets.local"),
       license=openapi.License(name="BSD License"),
