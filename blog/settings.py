@@ -17,8 +17,6 @@ import dj_database_url
 import os
 from rest_framework_simplejwt.settings import api_settings
 
-api_settings.SIGNING_KEY = SECRET_KEY
-
 # Load environment variables from .env
 load_dotenv()
 
@@ -32,6 +30,8 @@ ALLOWED_HOSTS =  os.getenv('ALLOWED_HOSTS', '*').split(';')
 # SECURITY WARNING: keep the secret key used in production secret!
 
 SECRET_KEY = os.getenv("SECRET_KEY")
+
+api_settings.SIGNING_KEY = SECRET_KEY
 
 # DATABASES = {
 #     'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
