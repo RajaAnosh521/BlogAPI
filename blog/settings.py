@@ -10,32 +10,33 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
-from pathlib import Path
-import psycopg2
-from dotenv import load_dotenv
-import dj_database_url
 import os
-from rest_framework_simplejwt.settings import api_settings
+
+from pathlib import Path
+
+import psycopg2
+
+from dotenv import load_dotenv
+
+import dj_database_url
 
 # Load environment variables from .env
+
 load_dotenv()
+
+# SECURITY WARNING: keep the secret key used in production secret!
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+
+from rest_framework_simplejwt.settings import api_settings
+
+api_settings.SIGNING_KEY = SECRET_KEY  # Now this is after SECRET_KEY is set
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS =  os.getenv('ALLOWED_HOSTS', '*').split(';')
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-# SECURITY WARNING: keep the secret key used in production secret!
-
-SECRET_KEY = os.getenv("SECRET_KEY")
-
-api_settings.SIGNING_KEY = SECRET_KEY
-
-# DATABASES = {
-#     'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
-# }
 
 # Fetch variables
 USER = os.getenv("user")
